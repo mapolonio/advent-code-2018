@@ -1,0 +1,103 @@
+{
+  "extends": ["airbnb/base", "prettier"],
+  "parser": "babel-eslint",
+  "plugins": ["react"],
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": true
+    }
+  },
+  "rules": {
+    // devDependancies are ok to import, overwriting airbnb/base
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    // we need to export Component classes so we can test without redux.
+    "import/no-named-as-default": 0,
+    // we never want commas dangling on functions, overwriting airbnb/base
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "never"
+      }
+    ],
+    // we always want parenthesis around arrow fns, overriding airbnb/base
+    "arrow-parens": ["error", "always"],
+    "newline-per-chained-call": "error",
+    "no-unused-vars": [
+      1,
+      {
+        "vars": "local",
+        "args": "none"
+      }
+    ],
+    "no-param-reassign": 0,
+    "no-else-return": 0,
+    "no-shadow": [
+      2,
+      {
+        "allow": ["err", "result"]
+      }
+    ],
+    "new-cap": 0,
+    "func-names": 0,
+    "no-underscore-dangle": 0,
+    "no-use-before-define": 0,
+    "class-methods-use-this": 0,
+    "no-mixed-operators": 0,
+    "no-useless-escape": 0,
+    "react/no-did-update-set-state": [2, "disallow-in-func"], // disable use of setState in componentDidUpdate
+    "react/prefer-es6-class": [2, "always"], // enforce the use of es6 class
+    "react/no-string-refs": 2, // enforce the use of callback on ref attribute instead a string name, string is deprecated
+    "react/prefer-stateless-function": [
+      1,
+      {
+        "ignorePureComponents": true
+      }
+    ], // enforce the use of const comp = () => {...} for stateless components
+    "react/self-closing-comp": [
+      "error",
+      {
+        "component": true
+      }
+    ], // enforce the use of self enclosing componente for no children components
+    "react/react-in-jsx-scope": 2, // this is a plus to enforce the use of import React from "react" on jsx files
+    "react/sort-comp": [
+      1,
+      {
+        // enforce good practice on ordering react components
+        "order": ["static-methods", "lifecycle", "everything-else", "render"]
+      }
+    ],
+    "react/jsx-wrap-multilines": 2, // enforce the use of parenthesis to wrap multiline components
+    "react/jsx-uses-react": "error", // avoid warning for unused React variable
+    "react/jsx-uses-vars": "error", // avoid errors on declarations of components as vars
+    "react/jsx-pascal-case": 2, // enforce the use of pascal case on components declarations
+    "react/jsx-closing-bracket-location": 2, // enforce closing tags break line when mutiprops are defined
+    "react/jsx-space-before-closing": [2, "always"], // enforce the use of a blank space before self enclosing tag
+    "react/jsx-boolean-value": 2 // enforce the use of boolean props without assign on components call
+  },
+  "env": {
+    "jest": true
+  },
+  "settings": {
+    "react": {
+      "pragma": "React"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".jsx", ".js"],
+        "paths": ["./"]
+      }
+    }
+  }
+}
