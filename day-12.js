@@ -122,7 +122,7 @@ class Pots {
     const { firstPlant, result } = this.generationMap[this.render()];
     const transformer = this.firstPlant - firstPlant;
 
-    this.plants = result.map(index => index + transformer);
+    this.plants = result.map((index) => index + transformer);
   }
 
   getScore() {
@@ -145,7 +145,7 @@ class Pots {
       this.plants[this.plants.length - 1] - this.plants[0]
     ).fill('.');
 
-    this.plants.forEach(pot => {
+    this.plants.forEach((pot) => {
       result[pot - this.plants[0]] = '#';
     });
 
